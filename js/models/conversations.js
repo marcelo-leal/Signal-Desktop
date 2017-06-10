@@ -37,6 +37,8 @@
     },
 
     initialize: function() {
+        // TODO: where do we save this?
+        this.verified = true;
         this.contactCollection = new Backbone.Collection();
         this.messageCollection = new Whisper.MessageCollection([], {
             conversation: this
@@ -46,6 +48,25 @@
 
         this.on('change:avatar', this.updateAvatarUrl);
         this.on('destroy', this.revokeAvatarUrl);
+    },
+
+    isVerified: function() {
+        if (this.isPrivate()) {
+            // TODO: what will this be? Does this need to be an async fetch?
+            return this.verified;
+        } else {
+            return this.contactCollection.every(function(contact) {
+                return contact.isVerified();
+            });
+        }
+    },
+    toggleVerified: function() {
+        if (!this.isPrivate()) {
+            throw new Error('You cannot verify a group conversation. You much verify individual contacts.');
+        }
+
+        this.verified = !this.verified;
+        this.trigger('change');
     },
 
     addKeyChange: function(id) {

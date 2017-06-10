@@ -972,6 +972,11 @@ input.search {
   font-weight: bold;
   padding: 0 5px 0 4px; }
 
+.conversation-title .verified:before {
+  content: "\00b7";
+  font-weight: bold;
+  padding: 0 5px 0 4px; }
+
 .conversation {
   background-color: white;
   height: 100%; }
@@ -1036,6 +1041,12 @@ input.search {
   .key-verification .qr img {
     display: inline-block;
     max-width: 100%; }
+.key-verification div.verify {
+  text-align: center; }
+.key-verification button.verify {
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px; }
 
 .message-detail .message-container {
   background: white;
