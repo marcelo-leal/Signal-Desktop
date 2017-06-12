@@ -337,7 +337,7 @@
             var identityKey = dcodeIO.ByteBuffer.wrap(profile.identityKey, 'base64').toArrayBuffer();
 
             return textsecure.storage.protocol.saveIdentity(
-              id, identityKey, storage.get('safety-numbers-approval', true), false
+              id, identityKey, false
             );
         });
     },
@@ -507,7 +507,7 @@
             throw 'No conflicts to resolve';
         }
 
-        return textsecure.storage.protocol.saveIdentity(number, identityKey, true, true).then(function() {
+        return textsecure.storage.protocol.saveIdentity(number, identityKey, true).then(function() {
             var promise = Promise.resolve();
             var conflicts = this.messageCollection.filter(function(message) {
                 return message.hasKeyConflict(number);
