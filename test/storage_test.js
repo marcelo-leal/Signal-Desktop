@@ -137,6 +137,32 @@ describe("SignalProtocolStore", function() {
         });
       });
     });
+    describe('saveIdentityWithAtttributes', function() {
+      it ('resolves or rejects', function(done) {
+          store.saveIdentityWithAtttributes(identifier, {
+              publicKey           : testKey.pubKey,
+              firstUse            : true,
+              timestamp           : Date.now(),
+              verified            : textsecure.storage.protocol.VerifiedStatus.VERIFIED,
+              nonblockingApproval : false
+          }).then(function() { done(); }, done);
+      });
+    });
+    describe('setApproval', function() {
+      it ('resolves or rejects', function(done) {
+          store.setApproval(identifier, true).then(done,done);
+      });
+    });
+    describe('setVerified', function() {
+      it ('resolves or rejects', function(done) {
+          store.setVerified(identifier, store.VerifiedStatus.UNVERIFIED).then(done,done);
+      });
+    });
+    describe('getVerified', function() {
+      it ('resolves or rejects', function(done) {
+          store.getVerified(identifier).then(function(result) { done(); }, done);
+      });
+    });
     describe('isTrustedIdentity', function() {
       describe('When invalid direction is given', function(done) {
         it('should fail', function(done) {
