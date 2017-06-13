@@ -540,6 +540,24 @@
                 });
             });
         },
+        isUntrusted: function(identifier) {
+            if (identifier === null || identifier === undefined) {
+                throw new Error("Tried to set verified for undefined/null key");
+            }
+            return new Promise(function(resolve, reject) {
+                var identityKey = new IdentityKey({id: identifier});
+                identityKey.fetch().then(function() {
+                    if (Date.now() - identityKey.get('timestamp') < TIMESTAMP_THRESHOLD
+                        && !identityKey.get('nonblockingApproval')) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                }, function() { // catch
+                    reject(new Error("No identity record for " + identifier));
+                });
+            });
+        },
         removeIdentityKey: function(number) {
             return new Promise(function(resolve, reject) {
                 var identityKey = new IdentityKey({id: number});

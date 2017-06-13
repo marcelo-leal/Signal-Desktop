@@ -163,6 +163,11 @@ describe("SignalProtocolStore", function() {
           store.getVerified(identifier).then(function(result) { done(); }, done);
       });
     });
+    describe('isUntrusted', function() {
+      it ('resolves or rejects', function(done) {
+          store.isUntrusted(identifier).then(function(result) { done(); }, done);
+      });
+    });
     describe('isTrustedIdentity', function() {
       describe('When invalid direction is given', function(done) {
         it('should fail', function(done) {
