@@ -465,7 +465,7 @@
                   && Date.now() - identityKey.get('timestamp') < TIMESTAMP_THRESHOLD
                   && !identityKey.get('nonblockingApproval'));
         },
-        saveIdentityWithAtttributes: function(identifier, attributes) {
+        saveIdentityWithAttributes: function(identifier, attributes) {
             if (identifier === null || identifier === undefined) {
                 throw new Error("Tried to put identity key for undefined/null key");
             }

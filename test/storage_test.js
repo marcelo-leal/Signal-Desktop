@@ -137,9 +137,9 @@ describe("SignalProtocolStore", function() {
         });
       });
     });
-    describe('saveIdentityWithAtttributes', function() {
+    describe('saveIdentityWithAttributes', function() {
       it ('resolves or rejects', function(done) {
-          store.saveIdentityWithAtttributes(identifier, {
+          store.saveIdentityWithAttributes(identifier, {
               publicKey           : testKey.pubKey,
               firstUse            : true,
               timestamp           : Date.now(),
