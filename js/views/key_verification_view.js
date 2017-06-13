@@ -16,15 +16,19 @@
             if (options.newKey) {
               this.their_key = options.newKey;
             }
+
             Promise.all([
                 this.loadTheirKey(),
                 this.loadOurKey(),
             ]).then(this.generateSecurityNumber.bind(this))
+              .then(function() {
+                this.listenTo(this.model, 'change', this.render);
+              }.bind(this))
               .then(this.render.bind(this));
               //.then(this.makeQRCode.bind(this));
         },
         makeQRCode: function() {
-            // Per Lilia: We can't turn this on until it geneates a Latin1 string, as is
+            // Per Lilia: We can't turn this on until it generates a Latin1 string, as is
             //   required by the mobile clients.
             new QRCode(this.$('.qr')[0]).makeCode(
                 dcodeIO.ByteBuffer.wrap(this.our_key).toString('base64')
@@ -60,9 +64,7 @@
             }.bind(this));
         },
         toggleVerified: function() {
-            console.log('toggleVerified!');
             this.model.toggleVerified();
-            this.render();
         },
         render_attributes: function() {
             var s = this.securityNumber;

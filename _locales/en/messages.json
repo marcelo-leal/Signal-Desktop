@@ -1,4 +1,8 @@
 {
+    "me": {
+      "message": "Me",
+      "description": "The label for yourself when shown in a group member list"
+    },
     "youLeftTheGroup": {
       "message": "You left the group",
       "description": "Displayed when a user can't send a message because they have left the group"

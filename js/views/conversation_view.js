@@ -545,7 +545,7 @@
                 this.$('.back').show();
             }
 
-            view.$el.insertBefore(this.$('.panel'));
+            view.$el.insertBefore(this.$('.panel').first());
         },
         resetPanel: function() {
             var view = this.panels.shift();

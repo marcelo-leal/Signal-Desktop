@@ -332,7 +332,8 @@ button.hamburger {
   display: inline-block;
   margin: 0 0 0 8px;
   width: calc(100% - 44px - 8px - 0.28571em);
-  text-align: left; }
+  text-align: left;
+  cursor: pointer; }
   .contact-details p {
     overflow-x: hidden;
     text-overflow: ellipsis; }
@@ -346,6 +347,8 @@ button.hamburger {
   .contact-details .number {
     color: #616161;
     font-size: 0.92857em; }
+  .contact-details.not-clickable {
+    cursor: default; }
 
 .recipients-input {
   position: relative; }
